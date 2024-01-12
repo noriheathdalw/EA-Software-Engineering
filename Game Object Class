@@ -1,0 +1,101 @@
+@startuml
+class Dream {
+ - content: String
+ - type: Enum
+ - outcome: Enum
+ + Dream(content: String, type: Enum)
+ + getContent(): String
+ + getType(): Enum
+ + getOutcome(): Enum
+ + setContent(content: String): void
+ + setType(type: Enum): void
+ + setOutcome(outcome: Enum): void
+}
+class Nightmare {
+ - content: String
+ - type: Enum
+ - outcome: Enum
+ + Nightmare(content: String, type: Enum)
+ + getContent(): String
+ + getType(): Enum
+ + getOutcome(): Enum
+ + setContent(content: String): void
+ + setType(type: Enum): void
+ + setOutcome(outcome: Enum): void
+}
+class DreamFactory {
+ + createDream(content: String, type: Enum): Dream
+ + createNightmare(content: String, type: Enum): Nightmare 
+}
+class DreamManager {
+ - dreams: List<Dream>
+ - nightmares: List<Nightmare>
+ - dreamFactory: DreamFactory
+ + DreamManager()
+ + generateDreams(): void
+ + generateNightmares(): void
+ + getDreams(): List<Dream>
+ + getNightmares(): List<Nightmare>
+ + popUpDream(dream: Dream): void
+ + popUpNightmare(nightmare: Nightmare): void
+ + chooseOption(dream: Dream, option: Enum): void
+ + chooseOption(nightmare: Nightmare, option: Enum): void
+ + triggerWhim(dream: Dream): void
+ + triggerWhim(nightmare: Nightmare): void
+ + triggerAspiration(dream: Dream): void
+ + triggerAspiration(nightmare: Nightmare): void
+ + triggerEvent(dream: Dream): void
+ + triggerEvent(nightmare: Nightmare): void
+}
+class Sim {
+ - name: String
+ - traits: List<Enum>
+ - emotions: List<Enum>
+ - needs: List<Enum>
+ - lifeEvents: List<Enum>
+ - moodlets: List<Enum>
+ - skills: Map<Enum, Integer>
+ - relationships: Map<Sim, Integer>
+ - aspirations: List<Enum>
+ - whims: List<Enum>
+ + Sim(name: String, traits: List<Enum>)
+ + getName(): String
+ + getTraits(): List<Enum>
+ + getEmotions(): List<Enum>
+ + getNeeds(): List<Enum>
+ + getLifeEvents(): List<Enum>
+ + getMoodlets(): List<Enum>
+ + getSkills(): Map<Enum, Integer>
+ + getRelationships(): Map<Sim, Integer>
+ + getAspirations(): List<Enum>
+ + getWhims(): List<Enum>
+ + setName(name: String): void
+ + setTraits(traits: List<Enum>): void
+ + setEmotions(emotions: List<Enum>): void
+ + setNeeds(needs: List<Enum>): void
+ + setLifeEvents(lifeEvents: List<Enum>): void
+ + setMoodlets(moodlets: List<Enum>): void
+ + setSkills(skills: Map<Enum, Integer>): void
+ + setRelationships(relationships: Map<Sim, Integer>): void
+ + setAspirations(aspirations: List<Enum>): void
+ + setWhims(whims: List<Enum>): void
+ + sleep(): void
+ + wakeUp(): void
+ + addMoodlet(moodlet: Enum): void
+ + removeMoodlet(moodlet: Enum): void
+ + increaseSkill(skill: Enum, amount: Integer): void
+ + decreaseSkill(skill: Enum, amount: Integer): void
+ + increaseRelationship(sim: Sim, amount: Integer): void
+ + decreaseRelationship(sim: Sim, amount: Integer): void
+ + addAspiration(aspiration: Enum): void
+ + removeAspiration(aspiration: Enum): void
+ + addWhim(whim: Enum): void
+ + removeWhim(whim: Enum): void
+}
+DreamFactory ..> Dream
+DreamFactory ..> Nightmare
+DreamManager --> DreamFactory
+DreamManager --> Dream
+DreamManager --> Nightmare
+Sim --> DreamManager
+@enduml
